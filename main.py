@@ -16,6 +16,31 @@ location = ("New York")
 python_version = ("Python 3.10")
 author = ("Etan Zheng (PicelBoi)")
 message = ("THIS IS A ALPHA BUILD!")
+password_correct = 0
+ascii_art = ("""
+ 
+             ,,,,,,,,,,,,,,,....
+       ,φ▄▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒∩
+     ▐▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒H
+     ▓▓▓▓▓▓▓▓▓▒▒███████▀▀▀▀▀▀▀▀▀▀▀▀▀██▓▌▒H
+     ▓▓▓▓▓▓▓▓╫▒▒▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓█▓▌▒H
+     ▓▓▓▓▓▓▓▓▓▒▒█▒▒▒▒▒ªª²²²"```"▒▒▒▒╫█▌▌▒H
+     ▓▓▓▓▓▓▓▓╫▒▒█▒▒▒▒▒  ::¬─.:  ║▒▒▒╫█▌▓▒H
+     ╟▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▒H      ...║▒▒▒╫█▌▓▒▒
+     ╫▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▌▓▒▒
+     ╟▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▌▓▒▒
+     ╫▓▓▓▓▓▓▓▓╫▒╫▄▄▄▄▄▄▄▄▄▓▓▓▓▓▓▓▓▓▓▓▀▒╫▒▒
+     ▐▓▓▓▓▓▓▓▓╫▒▒▐▀▀▒▒▒▒▒▒▒▒▒▒▒╦╦▒▒▒▒K▒▒▒▒
+     ▐▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+     ▐▓▓▓▓▓▓▓▓▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▄▓▓▓▒▒▒
+     ▐▓▓▓▓▓▓▓▓▌▒▒▒▒▒▒▒▒▒▒▒▒▒Ñ▒▒▒▒KÑÑ▒ÑÑ╫▒▒
+     ▐▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ÑÑÑÑÑÑ
+     ▐██▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓
+      ▀███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓
+        ▀███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓▓█▓██▓▓
+          ▀█▓▓█████▓▓██████████▀▀▀▀▀▀╙"`
+            ╙▀▀▀▀▀▀▀"╙`
+     """)
 # Important functions.
 def newsettings():
     # Makes a setting file.
@@ -23,6 +48,9 @@ def newsettings():
     birthday = 0
     birthyear = 0
     name = str(input("What is your name?"))
+    fullname = str(input("What is your full name?"))
+    maile = str(input("What is your email?"))
+    passwordd = str(input("Please enter a strong password."))
     print('Please enter your birthday.')
 
     while 1 > birthmonth or 12 < birthmonth:
@@ -46,15 +74,15 @@ def newsettings():
     greeting = input("What do you want us to say when you start up PCL?")
     print("That's all the info we need. Wait while we do all the work. (grab a coffee if your computer is extremely "
           "old.")
-    with open('settings.pkl', 'wb') as brandnew:
-        pickle.dump([name, birthmonth, birthday, birthyear, greeting], brandnew)
+    with open('settings.pvte', 'wb') as brandnew:
+        pickle.dump([name, birthmonth, birthday, birthyear, greeting, fullname, passwordd, maile], brandnew)
 
 
 def loadsettings():
     # Loads the setting file.
-    global name, birthmonth, birthyear, birthday, greeting
-    with open('settings.pkl', 'rb') as loader:
-        name, birthmonth, birthday, birthyear, greeting = pickle.load(loader)
+    global name, birthmonth, birthyear, birthday, greeting, maile, passwordd
+    with open('settings.pvte', 'rb') as loader:
+        name, birthmonth, birthday, birthyear, greeting, maile, passwordd, fullname = pickle.load(loader)
     print("Loaded!")
 
 
@@ -83,6 +111,24 @@ def exit():
 
 
 # Commands.
+def plus():
+    add1 = input("First number.")
+    add2 = input ('Second number.')
+    add = (add1 + add2)
+    print(str(add))
+def minus():
+    subtract1 = input("First number.")
+    subtract2 = input("Secound number.")
+    subtract = (subtract1 - subtract2)
+    print(str(subtract))
+def multiply():
+    times1 = input("First number.")
+    times2 = input("Second number.")
+    times = (times1 * times2)
+def divide():
+    divide1 = input("First number.")
+    divide2 = input("Second number.")
+    divider = (divide1 / divide2)
 def echo():
     # prints "vecho".
     vecho = input("Type in a sentence.")
@@ -131,37 +177,48 @@ def rpg():
         print("You won!")
     else:
         print("you got infected with the jelly virus...")
+def password():
+    global password_correct, passwordd
+    password_correct = 0
+    while password_correct <= 0:
+        ok = input("Please enter your password.")
+        if ok == passwordd:
+            password_correct = 1
+        else:
+            print("Wrong password.")
 
 
 def about():
     my_system = platform.uname()
 
     print(f"""
-         //(*,,,........,..............,,  {pvte_name}
-  ((((((#/,*,,,*,*,,*,,,,,,,,,,,,,,,,,     Patch: {patch_date}
-  (#((((#/***&&&&&%%%%%%%#%%%%%%%@%/,,     CPU: {my_system.processor}
- #((((#((/**#*****,,,,,,,,,,***,*&%(,,     System: {my_system.system}
- ,(((((((/,*/******          ****%@(,,     Node Name: {my_system.node}
-  ((#(((#/*********..,.,,,...****%@(,,     Release: {my_system.release}
-  ##(#(#((/*,,******..*,.  ..****%@/*,     Version: {my_system.version}
-  (#####(#/**********************%@(*,     Machine: {my_system.processor}
-  #####(##/**(*********,***,,,**,#@/**  
-  ########/**,(((/,...,,,,.....,******              {pvte_fullname}
-  (#######(****************************                     Made in {location}
-  ########/********************/*/##/*/                     ({python_version})
-  #######%/***************************/                  By {author}
-  ########(**/(******************//*//*                  {message}
-  #%######(*******/*/(((((((((((((((#               Owned by: {name}
-    &(((###((((##%%#%#%%%%%%%%%%%@%#                Greeting: {greeting}
-      &#%#%%%%%%%%%%%%%%%%%%%%&&&&&&%               Birthday: {birthmonth}-{birthday}-{birthyear}
-        %%%&@@&&&%#&                                        """)
+    {ascii_art}    {pvte_name}
+                    {pvte_fullname}
+                    Patch: {patch_date}
+                    {message}
+                    ----------------------
+                    System Information 
+                    CPU: {my_system.processor}
+                    System: {my_system.system}
+                    Node: {my_system.node}
+                    Version: {my_system.version}
+                    Machine: {my_system.machine}
+                    Release: {my_system.release}
+                    ----------------------------
+                    User Info
+                    Name: {name}
+                    Full Name: {fullname}
+                    E-Mail: {maile}
+                    Greeting: {greeting}
+                    Birthday: {birthyear}-{birthday}-{birthmonth}
+""")
 
 
 
 
 
 # Path to settings.
-settings = "settings.pkl"
+settings = "settings.pvte"
 
 # We make a infinite loop here.
 infiniteloop = 1
@@ -175,13 +232,16 @@ else:
     print("No settings file found! Creating one...")
     newsettings()
     name = "Waddle Dee"
+    fullname = "Waddler Waddle Dee"
+    maile = "Waddle@waddle.com"
     birthday = 23
     birthyear = 2022
     birthmonth = 9
     greeting = "default"
+    passwordd = "etan"
     loadsettings()
 print("Settings done.")
-
+password()
 print("Hello!, " + name + ".")
 print(greeting)
 if infiniteloop >= 1:
