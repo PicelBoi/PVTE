@@ -5,7 +5,17 @@ import datetime
 import random
 import platform
 
-# Default path.
+# PVTE = PicelBoi Virtual Terminal Environment
+# PicelBoi made this
+
+# IMPORTANT VARIABLES RELATING TO CODE BUILD
+pvte_name = ("PVTE v1.0a")
+pvte_fullname = ("PicelBoi Virtual Terminal Environment")
+patch_date = ("2022-9-24")
+location = ("New York")
+python_version = ("Python 3.10")
+author = ("Etan Zheng (PicelBoi)")
+message = ("THIS IS A ALPHA BUILD!")
 # Important functions.
 def newsettings():
     # Makes a setting file.
@@ -61,71 +71,94 @@ def start():
         print("Unknown command. Type in helpptve to list all commands.")
     except OverflowError:
         print("OVERFLOW!!")
-def helpptve()
+
+
+def helpptve():
     print("Help not avilable.")
+
+
 def exit():
+    # broken
     infiniteloop = 0
+
 
 # Commands.
 def echo():
     # prints "vecho".
     vecho = input("Type in a sentence.")
     print(vecho)
+
+
 def rpg():
     MHP = int(40)
     PHP = int(100)
     potions = 3
-    while MHP < 0 or PHP < 0:
+    while MHP > 0 or PHP > 0:
         print("A Jellbie appeared! Don't try to bite it, or you'll become the jellbie itself.")
-        print("Jellbie HP: " + MHP)
-        print(name + " HP: " + PHP)
+        print("Jellbie HP: " + str(MHP))
+        print(name + " HP: " + str(PHP))
         print("fight to fight, support to recover, bite to bite the jellbie and die.")
         player = ("COMMAND!")
         if player == ("fight"):
-            damage = random.randint(0,40)
+            damage = random.randint(0, 40)
             if damage <= 0:
                 print("You tried to attack, but the jellbie dodged!")
             elif damage >= 1:
-                print("you hit him! you dealt " + damage + " damage to the jellbie!")
+                print("you hit him! you dealt " + str(damage) + " damage to the jellbie!")
                 MHP = MHP - damage
-                print("Jellbie's at " + PHP + " hp.")
+                print("Jellbie's at " + str(PHP) + " hp.")
+                print("Jellbie attacks!")
+                PHP = PHP - 20
+                print("Jellbie did 20 damage!")
         elif player == ("support"):
-                health = random.randint(20, 40)
-                if potions >= 0:
-                    print("You drank the health potion!")
-                    PHP = PHP + health
-                    print("you recovered " + health + " hp.")
-                    print("You have " + potions + " potions left.")
-                elif potions <=0:
-                    print("You have no more potions!")
+            health = random.randint(20, 40)
+            if potions >= 0:
+                print("You drank the health potion!")
+                PHP = PHP + health
+                print("you recovered " + str(health) + " hp.")
+                print("You have " + str(potions) + " potions left.")
+            elif potions <= 0:
+                print("You have no more potions!")
+            print("Jellbie attacks!")
+            PHP = PHP - 20
+            print("Jellbie did 20 damage!")
         elif player == ("bite"):
             print("You bite the jellbie. The taste is too sweet, you feel sleepy, sleepy, sleepy...")
             PHP = 0
         else:
             print("Wrong command.")
-    if PHP >= 0:
+    if PHP <= 0:
         print("You won!")
     else:
         print("you got infected with the jelly virus...")
-def sysinfo():
+
+
+def about():
     my_system = platform.uname()
 
-    print(f"System: {my_system.system}")
-    print(f"Node Name: {my_system.node}")
-    print(f"Release: {my_system.release}")
-    print(f"Version: {my_system.version}")
-    print(f"Machine: {my_system.machine}")
-    print(f"Processor: {my_system.processor}")
-def about():
-    print("""   __________
-                | .    .  |
-                |  |__|   |
-                |_________|
-                    PVTE
-    (PicelBoi Virtual Terminal Environment)
-            Made in New York
-                by PicelBoi
-                """)
+    print(f"""
+         //(*,,,........,..............,,  {pvte_name}
+  ((((((#/,*,,,*,*,,*,,,,,,,,,,,,,,,,,     Patch: {patch_date}
+  (#((((#/***&&&&&%%%%%%%#%%%%%%%@%/,,     CPU: {my_system.processor}
+ #((((#((/**#*****,,,,,,,,,,***,*&%(,,     System: {my_system.system}
+ ,(((((((/,*/******          ****%@(,,     Node Name: {my_system.node}
+  ((#(((#/*********..,.,,,...****%@(,,     Release: {my_system.release}
+  ##(#(#((/*,,******..*,.  ..****%@/*,     Version: {my_system.version}
+  (#####(#/**********************%@(*,     Machine: {my_system.processor}
+  #####(##/**(*********,***,,,**,#@/**  
+  ########/**,(((/,...,,,,.....,******              {pvte_fullname}
+  (#######(****************************                     Made in {location}
+  ########/********************/*/##/*/                     ({python_version})
+  #######%/***************************/                  By {author}
+  ########(**/(******************//*//*                  {message}
+  #%######(*******/*/(((((((((((((((#               Owned by: {name}
+    &(((###((((##%%#%#%%%%%%%%%%%@%#                Greeting: {greeting}
+      &#%#%%%%%%%%%%%%%%%%%%%%&&&&&&%               Birthday: {birthmonth}-{birthday}-{birthyear}
+        %%%&@@&&&%#&                                        """)
+
+
+
+
 
 # Path to settings.
 settings = "settings.pkl"
@@ -157,4 +190,3 @@ if infiniteloop >= 1:
 else:
     about()
     print("Bye!")
-
