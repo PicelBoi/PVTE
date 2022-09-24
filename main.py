@@ -1,14 +1,19 @@
 # modules :)
+import importlib
 import pickle
 import os.path
 import datetime
 import random
 import platform
-
+import os
+import sys
+import string
+from kirby import kirby
 # PVTE = PicelBoi Virtual Terminal Environment
 # PicelBoi made this
 
-# IMPORTANT VARIABLES RELATING TO CODE BUILD
+# IMPORTANT VARIABLES
+root = os.getcwd()
 pvte_name = ("PVTE v1.0a")
 pvte_fullname = ("PicelBoi Virtual Terminal Environment")
 patch_date = ("2022-9-24")
@@ -41,7 +46,22 @@ ascii_art = ("""
           ▀█▓▓█████▓▓██████████▀▀▀▀▀▀╙"`
             ╙▀▀▀▀▀▀▀"╙`
      """)
+
+
 # Important functions.
+def loadfunctions():
+    sys.path.append("functions/")
+    for x in os.listdir(root + "/functions/"):
+        if x.endswith(".py"):
+            # Loading all functions...
+            try:
+                module = (x.replace('.py', ''))
+                importlib.__import__(module)
+            except SyntaxError:
+                print("WORK IN PROGRESS")
+            print("loading " + x)
+
+
 def newsettings():
     # Makes a setting file.
     birthmonth = 0
@@ -88,17 +108,19 @@ def loadsettings():
 
 def start():
     # Prompt.
-    prompt = input(name + "@PCL =")
+    prompt = input(name + "@PVTE = ")
     try:
         eval(prompt + '()')
     except ValueError:
         print("Unknown command. Type in helpptve to list all commands.")
     except SyntaxError:
-        print("Unknown command. Type in helpptve to list all commands.")
+        print("Unknown syntax. Check your command.")
     except NameError:
         print("Unknown command. Type in helpptve to list all commands.")
     except OverflowError:
         print("OVERFLOW!!")
+    except TypeError:
+        print("Unknown type. Check your command.")
 
 
 def helpptve():
@@ -113,22 +135,30 @@ def exit():
 # Commands.
 def plus():
     add1 = input("First number.")
-    add2 = input ('Second number.')
+    add2 = input('Second number.')
     add = (add1 + add2)
     print(str(add))
+
+
 def minus():
     subtract1 = input("First number.")
     subtract2 = input("Secound number.")
     subtract = (subtract1 - subtract2)
     print(str(subtract))
+
+
 def multiply():
     times1 = input("First number.")
     times2 = input("Second number.")
     times = (times1 * times2)
+
+
 def divide():
     divide1 = input("First number.")
     divide2 = input("Second number.")
     divider = (divide1 / divide2)
+
+
 def echo():
     # prints "vecho".
     vecho = input("Type in a sentence.")
@@ -177,6 +207,8 @@ def rpg():
         print("You won!")
     else:
         print("you got infected with the jelly virus...")
+
+
 def password():
     global password_correct, passwordd
     password_correct = 0
@@ -190,31 +222,29 @@ def password():
 
 def about():
     my_system = platform.uname()
-
     print(f"""
-    {ascii_art}    {pvte_name}
-                    {pvte_fullname}
-                    Patch: {patch_date}
-                    {message}
-                    ----------------------
-                    System Information 
-                    CPU: {my_system.processor}
-                    System: {my_system.system}
-                    Node: {my_system.node}
-                    Version: {my_system.version}
-                    Machine: {my_system.machine}
-                    Release: {my_system.release}
-                    ----------------------------
-                    User Info
-                    Name: {name}
-                    Full Name: {fullname}
-                    E-Mail: {maile}
-                    Greeting: {greeting}
-                    Birthday: {birthyear}-{birthday}-{birthmonth}
+                   ,,,,,,,,,,,,,,,....      {pvte_name}
+       ,φ▄▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒∩  ({pvte_fullname})
+     ▐▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒H  -----------------------------
+     ▓▓▓▓▓▓▓▓▓▒▒███████▀▀▀▀▀▀▀▀▀▀▀▀▀██▓▌▒H  System Information
+     ▓▓▓▓▓▓▓▓╫▒▒▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓█▓▌▒H  CPU: {my_system.processor}
+     ▓▓▓▓▓▓▓▓▓▒▒█▒▒▒▒▒ªª²²²"```"▒▒▒▒╫█▌▌▒H  OS: {my_system.system}
+     ▓▓▓▓▓▓▓▓╫▒▒█▒▒▒▒▒  ::¬─.:  ║▒▒▒╫█▌▓▒H  Node: {my_system.node}
+     ╟▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▒H      ...║▒▒▒╫█▌▓▒▒  Version: {my_system.version}
+     ╫▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▌▓▒▒  Machine: {my_system.machine}
+     ╟▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▌▓▒▒  -----------------------------
+     ╫▓▓▓▓▓▓▓▓╫▒╫▄▄▄▄▄▄▄▄▄▓▓▓▓▓▓▓▓▓▓▓▀▒╫▒▒  User Information
+     ▐▓▓▓▓▓▓▓▓╫▒▒▐▀▀▒▒▒▒▒▒▒▒▒▒▒╦╦▒▒▒▒K▒▒▒▒  Name: {name}
+     ▐▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  
+     ▐▓▓▓▓▓▓▓▓▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▄▓▓▓▒▒▒  E-Mail: {maile}
+     ▐▓▓▓▓▓▓▓▓▌▒▒▒▒▒▒▒▒▒▒▒▒▒Ñ▒▒▒▒KÑÑ▒ÑÑ╫▒▒  Birthday: {birthmonth}-{birthday}-{birthyear}
+     ▐▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ÑÑÑÑÑÑ  Greeting: {greeting}
+     ▐██▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓  -----------------------------
+      ▀███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓    Other Information
+        ▀███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓▓█▓██▓▓    Message: {message}
+          ▀█▓▓█████▓▓██████████▀▀▀▀▀▀╙"`    Patch: {patch_date}
+            ╙▀▀▀▀▀▀▀"╙`
 """)
-
-
-
 
 
 # Path to settings.
@@ -241,6 +271,8 @@ else:
     passwordd = "etan"
     loadsettings()
 print("Settings done.")
+print("Loading all functions from functions folder...")
+loadfunctions()
 password()
 print("Hello!, " + name + ".")
 print(greeting)

@@ -1,0 +1,2 @@
+def kirby():
+    print("hiii!")
