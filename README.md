@@ -36,5 +36,6 @@ TUI (yet to be added, maybe PVTE 2 or 3?)
 Help (as helppvte, no help yet)
 Options (yet to be added since my limited knowledge of python yet has to somehow get the input function to register dashes as options.)
 Text Editor (yet to be added)
+Calculator (plus,minus,multiply,divide)
 
 Type in "about" to get PVTE info.
