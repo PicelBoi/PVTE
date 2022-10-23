@@ -10,7 +10,7 @@
  - [ ] Music Player (simplemusic)
  - [x] Jellbie (rpg, non-finished)
  - [ ] Function-As-A-File (FAAS, not working, check kirby.py for more info)
- - [ ] Command list (helppvte)
+ - [x] Command list (helppvte)
 
 # Tips
 Type in about to gain more info.
